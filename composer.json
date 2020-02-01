@@ -16,7 +16,7 @@
     },
     "autoload": {
       "psr-4": {
-          "eeerlend\\ElementalBlocks\\": "src/"
+          "eeerlend\\Elements\\": "src/"
       }
     },
     "extra": {
