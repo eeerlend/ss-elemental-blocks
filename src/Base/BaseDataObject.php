@@ -4,6 +4,7 @@ namespace eeerlend\Elements\Base;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Versioned\Versioned;
 use SilverStripe\Assets\Image;
+use SilverStripe\Assets\File;
 
 class BaseDataObject extends DataObject
 {
@@ -17,11 +18,13 @@ class BaseDataObject extends DataObject
 
     private static $has_one = array(
         'Image' => Image::class,
+        'File' => File::class,
         'ElementLink' => \Page::class,
     );
 
     private static $owns = array(
         'Image',
+        'File'
     );
 
     private static $default_sort = 'Title ASC';
@@ -59,17 +62,12 @@ class BaseDataObject extends DataObject
         $this->beforeUpdateCMSFields(function ($fields) {
             $fields->removeByName(array(
                 'Sort',
+                'ShowTitle',
+                'Content',
+                'ElementLinkID',
+                'Image',
+                'File'
             ));
-
-            $fields->removeByName('ShowTitle');
-
-            $image = $fields->dataFieldByName('Image')
-                ->setFolderName('Images');
-
-            $fields->insertBefore($image, 'Content');
-
-            $fields->dataFieldByName('Content')
-                ->setRows(8);
         });
 
         return parent::getCMSFields();
