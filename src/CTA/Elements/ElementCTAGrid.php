@@ -15,15 +15,23 @@ class ElementCTAGrid extends BaseElement
     private static $singular_name = 'call to action grid element';
     private static $plural_name = 'call to action grid elements';
     private static $description = 'This element displays a grid with call to action elements, that lead the user to another page/section';
-    private static $inline_editable = true;
+    private static $inline_editable = false;
+
+    private static $db = [
+        'ImageStyle' => 'Varchar',
+    ];
 
     private static $has_many = [
         'CallToActions' => ElementCTA::class,
     ];
 
+    private static $defaults = array(
+        'ImageStyle' => 'rounded'
+    );
+
     public function getCMSFields() {
         $this->beforeUpdateCMSFields(function (FieldList $fields) {
-
+            $fields->removeByName('Content');
         });
 
         return parent::getCMSFields();

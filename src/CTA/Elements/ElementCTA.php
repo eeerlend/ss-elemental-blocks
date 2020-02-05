@@ -7,7 +7,7 @@ use SilverStripe\Assets\Image;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\TreeDropdownField;
 use SilverStripe\AssetAdmin\Forms\UploadField;
-
+use SilverStripe\Forms\DropdownField;
 
 class ElementCTA extends BaseElement
 {
@@ -18,6 +18,10 @@ class ElementCTA extends BaseElement
     private static $description = 'This element displays a single call to action element, that lead the user to another page/section';
     private static $inline_editable = true;
 
+    private static $db = [
+        'ImageStyle' => 'Varchar',
+    ];
+
     private static $has_one = [
         'CTAGrid' => ElementCTAGrid::class,
     ];
@@ -26,20 +30,24 @@ class ElementCTA extends BaseElement
         'Image'
     ];
 
+    private static $defaults = array(
+        'ShowTitle' => 1,
+        'ImageStyle' => 'rounded'
+    );
 
     public function getCMSFields() {
         $this->beforeUpdateCMSFields(function (FieldList $fields) {
             $fields->removeByName('CTAGridID');
 
             // Image
-            $fields->insertAfter(UploadField::create('Image', 'Image or icon')
+            $fields->insertBefore(UploadField::create('Image', 'Image or icon')
                 ->setFolderName('images')
                 ->setAllowedExtensions('jpg,jpeg,png')
                 ->setIsMultiUpload(false)
-            , 'File');
+            , 'Content');
 
             // PageLink
-            $fields->add(TreeDropdownField::create("PageLinkID", "Linked page", "Page"));
+            $fields->insertAfter(TreeDropdownField::create("PageLinkID", "Linked page", "Page"), 'Image');
         });
 
         return parent::getCMSFields();

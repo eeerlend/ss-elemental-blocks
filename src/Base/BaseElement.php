@@ -46,6 +46,16 @@ class BaseElement extends \DNADesign\Elemental\Models\BaseElement
                 $fields->removeByName('Alignment');
             }
 
+            $imagestyle = $this->config()->get('imagestyle');
+
+            if ($imagestyle && count($imagestyle) > 0) {
+                $imagestyleDropdown = DropdownField::create('ImageStyle', 'Image style', $imagestyle)
+                    ->setEmptyString('Select image style..');
+                $fields->insertBefore($imagestyleDropdown, 'ExtraClass');
+            } else {
+                $fields->removeByName('ImageStyle');
+            }
+
             /*
             $fields->add(DropdownField::create('Style', 'Display style', array(
                 'Light' => 'Light',
