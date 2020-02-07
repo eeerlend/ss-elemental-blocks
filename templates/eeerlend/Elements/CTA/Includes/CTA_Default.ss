@@ -7,8 +7,12 @@
         <div class="cta-element__content">
             <% if $ImageStyle == 'icon' %>
                 <div class="cta-element__content-icon">
-                    <% if $Image %>
+                    <% if $IconClass %>
+                        <i class="$IconClass"></i>
+                    <% else_if $Image %>
                         <img class="$ImageStyle" src="$Image.FocusFill(100,100).URL" alt="$Image.Title" />
+                    <% else %>
+                        <i class="fas fa-exclamation"></i>
                     <% end_if %>
                 </div>
             <% end_if %>

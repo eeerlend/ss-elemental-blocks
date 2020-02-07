@@ -2,10 +2,12 @@
     <% if $Style != 'imagebackground' %>
         <% if $ImageStyle == 'icon' %>
             <div class="cta-element__content-icon">
-                <% if $Image %>
+                <% if $IconClass %>
+                    <i class="$IconClass"></i>
+                <% else_if $Image %>
                     <img class="$ImageStyle" src="$Image.FocusFill(100,100).URL" alt="$Image.Title" />
                 <% else %>
-                    <i class="fab fa-accessible-icon"></i>
+                    <i class="fas fa-exclamation"></i>
                 <% end_if %>
             </div>
         <% else_if $Image %>
