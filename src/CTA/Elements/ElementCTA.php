@@ -21,6 +21,7 @@ class ElementCTA extends BaseElement
 
     private static $db = [
         'ImageStyle' => 'Varchar',
+        'IconClass' => 'Varchar',
     ];
 
     private static $has_one = [
@@ -53,6 +54,9 @@ class ElementCTA extends BaseElement
 
             $fields->insertAfter(TextField::create('ButtonText', 'ButtonText')
             , 'PageLinkID');
+
+            $fields->insertBefore(TextField::create('IconClass', 'IconClass')
+            , 'ExtraClass');
         });
 
         return parent::getCMSFields();
