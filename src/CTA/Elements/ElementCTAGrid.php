@@ -38,6 +38,6 @@ class ElementCTAGrid extends BaseElement
     }
 
     public function getType() {
-        return 'Call To Action grid';
+        return 'CTA grid';
     }
 }

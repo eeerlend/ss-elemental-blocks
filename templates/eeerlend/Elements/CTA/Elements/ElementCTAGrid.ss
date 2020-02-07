@@ -1,12 +1,9 @@
-<section class="section $ClassName.ShortName section-$Style section-center">
-    <div class="container">
-        <% if ShowTitle %><h2 class="mb-5">$Title</h2><% end_if %>
+<div class="cta-grid-element__container">
+    <% if ShowTitle %><h2 class="cta-grid-element__title">$Title</h2><% end_if %>
+
+    <div class="cta-grid-element__row">
         <% loop CallToActions %>
-            <% if $Up.ImageStyle %>
-                <% include eeerlend/Elements/CTA/Includes/CallToActionItem ImageStyle=$Up.ImageStyle %>
-            <% else %>
-                <% include eeerlend/Elements/CTA/Includes/CallToActionItem %>
-            <% end_if %>
+            <% include eeerlend/Elements/CTA/Includes/CTA_InGrid %>
         <% end_loop %>
     </div>
-</section>
+</div>

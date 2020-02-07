@@ -8,6 +8,7 @@ use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\TreeDropdownField;
 use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Forms\DropdownField;
+use SilverStripe\Forms\TextField;
 
 class ElementCTA extends BaseElement
 {
@@ -47,13 +48,17 @@ class ElementCTA extends BaseElement
             , 'Content');
 
             // PageLink
-            $fields->insertAfter(TreeDropdownField::create("PageLinkID", "Linked page", "Page"), 'Image');
+            $fields->insertAfter(TreeDropdownField::create("PageLinkID", "Linked page", "Page")
+            , 'Image');
+
+            $fields->insertAfter(TextField::create('ButtonText', 'ButtonText')
+            , 'PageLinkID');
         });
 
         return parent::getCMSFields();
     }
 
     public function getType() {
-        return 'Call To Action';
+        return 'CTA';
     }
 }

@@ -1,5 +1,9 @@
-<section class="section $ClassName.ShortName section-$Style section-$Alignment">
-    <div class="container">
-        <% include eeerlend/Elements/CTA/Includes/CallToActionItem %>
-    </div>
-</section>
+<% if $Style == 'imagebackground' %>
+    <% include eeerlend/Elements/CTA/Includes/CTA_ImageBackground %>
+<% else %>
+    <% include eeerlend/Elements/CTA/Includes/CTA_Default %>
+<% end_if %>
+
+
+
+

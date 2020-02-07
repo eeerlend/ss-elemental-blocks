@@ -11,7 +11,8 @@ class BaseElement extends \DNADesign\Elemental\Models\BaseElement
 
     private static $db = [
         'Content' => 'HTMLText',
-        'Alignment' => 'Varchar'
+        'Alignment' => 'Varchar',
+        'ButtonText' => 'Varchar'
     ];
 
     private static $has_one = array(
@@ -21,8 +22,8 @@ class BaseElement extends \DNADesign\Elemental\Models\BaseElement
     );
 
     private static $defaults = array(
-        'Style' => 'Light',
-        'Alignment' => 'Center',
+        'Style' => 'light',
+        'Alignment' => 'center',
     );
 
     public function getCMSFields() {
@@ -30,7 +31,8 @@ class BaseElement extends \DNADesign\Elemental\Models\BaseElement
             $fields->removeByName(array(
                 'File',
                 'Image',
-                'PageLinkID'
+                'PageLinkID',
+                'ButtonText'
             ));
 
             $fields->dataFieldByName('Content')

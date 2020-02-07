@@ -1,16 +1,11 @@
-<section class="section $ClassName.ShortName section-$Style section-$Alignment">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm mb-3 text-center">
-                <h3>$Title</h3>
+<div class="logos-element__container">
+    <% if ShowTitle %><h2 class="logos-element__title">$Title</h2><% end_if %>
+
+    <div class="logos-element__logogrid">
+        <% loop $Logos %>
+            <div class="logos-element__logo">
+                <a href="$Link" alt="$Title logo" target="_blank">$Image.ScaleMaxHeight(100)</a>
             </div>
-        </div>
-        <div class="row mb-3">
-            <% loop $Logos %>
-                <div class="col-sm p-3 text-center">
-                    <a href="$Link" alt="$Title logo" target="_blank">$Image.ScaleMaxHeight(100)</a>
-                </div>
-            <% end_loop %>
-        </div>
+        <% end_loop %>
     </div>
-</section>
+</div>
