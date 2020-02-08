@@ -1,26 +1,26 @@
-<div class="banner-element__container">
-    <div class="banner-element__overlay"></div>
+<div class="banner-element__overlay"></div>
 
-    <% if $File %>
-        <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
-            <source src="$File.URL" type="video/mp4">
-        </video>
-    <% end_if %>
+<% if $File %>
+    <video class="banner-element__video" playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+        <source src="$File.URL" type="video/mp4">
+    </video>
+<% else_if $Image %>
+    <img class="banner-element__image" src="$Image.ScaleHeight(700).URL" />
+<% end_if %>
 
-    <div class="container h-100">
-        <div class="d-flex text-center h-100">
-            <div class="my-auto w-100">
-                <% if $IconFile %>
-                    <img class="" src="$IconFile.ScaleHeight(120).URL" alt="Icon" />
-                <% end_if %>
+<div class="banner-element__content-container">
+    <div class="banner-element__content-wrapper">
+        <div class="banner-element__content">
+            <% if $IconFile %>
+                <img class="banner-element__content-icon" src="$IconFile.ScaleHeight(120).URL" alt="Icon" />
+            <% end_if %>
 
-                <h1>$Title</h1>
-                <h2>$Content</h2>
+            <h1 class="banner-element__content-title">$Title</h1>
+            <div class="banner-element__content-text">$Content</div>
 
-                <% if $PageLink %>
-                    <a href="$PageLink.Link" class="btn btn-primary mt-3"><% if $ButtonText %>$ButtonText<% else %>Read more<% end_if %></a>
-                <% end_if %>
-            </div>
+            <% if $PageLink %>
+                <a href="$PageLink.Link" class="banner-element__content-link"><% if $ButtonText %>$ButtonText<% else %>Read more<% end_if %></a>
+            <% end_if %>
         </div>
     </div>
 </div>

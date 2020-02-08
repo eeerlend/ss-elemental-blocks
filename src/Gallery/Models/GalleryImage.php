@@ -3,7 +3,7 @@ namespace eeerlend\Elements\Gallery\Models;
 
 use eeerlend\Elements\Base\BaseDataObject;
 use eeerlend\Elements\Gallery\Elements\ElementPhotoGallery;
-
+use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Assets\Image;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\LiteralField;
@@ -49,10 +49,10 @@ class GalleryImage extends BaseDataObject
             'ElementLinkID',
         ));
 
-        $image = $fields->dataFieldByName('Image')
-            ->setFolderName('Uploads/Elements/PhotoGallery/');
-
-        $fields->insertBefore($image, 'Content');
+        $fields->addFieldToTab('Root.Main', UploadField::create('Image', 'Photo')
+            ->setFolderName('images')
+            ->setAllowedExtensions('jpg,jpeg,png')
+        , 'Content');
 
         // so if anything depends on PageLink it doesn't flake out
         $fields->replaceField('PageLink', new LiteralField('PageLink', ''));
