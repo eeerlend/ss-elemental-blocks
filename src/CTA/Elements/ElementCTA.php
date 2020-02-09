@@ -13,7 +13,7 @@ use SilverStripe\Forms\TextField;
 class ElementCTA extends BaseElement
 {
     private static $table_name = 'eeerlend-ElementCTA';
-    private static $icon = 'font-icon-plus-1';
+    private static $icon = 'font-icon-angle-double-right';
     private static $singular_name = 'call to action grid element';
     private static $plural_name = 'call to action grid elements';
     private static $description = 'This element displays a single call to action element, that lead the user to another page/section';

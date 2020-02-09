@@ -1,3 +1,29 @@
 ---
 Name: ss-elemental-blocks
 ---
+Silverstripe\SiteConfig\SiteConfig:
+  extensions:
+    - eeerlend\Elements\Map\Config\ElementMapConfig
+eeerlend\Elements\Map\Elements\ElementMap:
+  mapsizes:
+    small: 'Small'
+    big: 'Big'
+  mapzooms:
+    8: 'Normal'
+eeerlend\Elements\CTA\Elements\ElementCTA:
+  alignment:
+    left: 'Text left'
+    center: 'Text center'
+    right: 'Text right'
+  imagestyle:
+    rounded: 'rounded'
+    icon: 'icon'
+eeerlend\Elements\VideoEmbed\Elements\ElementVideoEmbed:
+  providers:
+    vimeo: 'Vimeo'
+    youtube: 'YouTube'
+eeerlend\Elements\Testimonial\Elements\ElementTestimonial:
+  alignment:
+    left: 'Text left'
+    center: 'Text center'
+    right: 'Text right'
