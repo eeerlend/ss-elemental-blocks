@@ -8,7 +8,7 @@ class ElementContactForm extends BaseElement
 {
     private static $table_name = 'eeerlend-ElementContactForm';
 
-    private static $icon = 'font-icon-chat';
+    private static $icon = 'font-icon-p-post';
     private static $singular_name = 'contact form element';
     private static $plural_name = 'contact form elements';
     private static $description = 'Displays a contact form for a given e-mail address';
