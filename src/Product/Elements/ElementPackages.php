@@ -1,0 +1,35 @@
+<?php
+namespace eeerlend\Elements\Product\Elements;
+
+use eeerlend\Elements\Base\BaseElement;
+use SilverStripe\Forms\FieldList;
+
+class ElementPackages extends BaseElement
+{
+    private static $table_name = 'eeerlend-ElementPackages';
+
+    private static $icon = 'font-icon-p-package';
+    private static $singular_name = 'package element';
+    private static $plural_name = 'package elements';
+    private static $description = 'Displays packages';
+    private static $inline_editable = true;
+
+    private static $db = [
+
+    ];
+
+    private static $owns = [
+        'Image'
+    ];
+
+    public function getCMSFields() {
+        $this->beforeUpdateCMSFields(function (FieldList $fields) {
+        });
+
+        return parent::getCMSFields();
+    }
+
+    public function getType() {
+        return 'Product: Packages';
+    }
+}
