@@ -2,6 +2,7 @@
 namespace eeerlend\Elements\Chart\Elements;
 
 use eeerlend\Elements\Base\BaseElement;
+use eeerlend\Elements\Chart\Elements\ElementChartGrid;
 use eeerlend\Elements\Chart\Models\Dataset;
 use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Forms\FieldList;
@@ -26,13 +27,19 @@ class ElementChart extends BaseElement
         'DisplayFill' => 'Boolean',
     ];
 
+    private static $has_one = [
+        'ChartGrid' => ElementChartGrid::class,
+    ];
+
     private static $has_many = [
         'Datasets' => Dataset::class,
     ];
 
     public function getCMSFields() {
         $this->beforeUpdateCMSFields(function (FieldList $fields) {
-            // Map sizes
+            $fields->removeByName('ChartGridID');
+
+            // Chart styles
             $chartstyles = $this->config()->get('chartstyles');
 
             if ($chartstyles && count($chartstyles) > 0) {
