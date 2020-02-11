@@ -3,6 +3,8 @@
         <h2 class="video-embed-element__title">$Title</h2>
     <% end_if %>
 
+    <div class="video-embed-element__content">$Content</div>
+
     <% if ExternalVideoTag %>
         <div class="video-embed-element__video-wrapper">
             <% if Provider == 'youtube' %>
