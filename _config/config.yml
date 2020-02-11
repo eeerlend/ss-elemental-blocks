@@ -27,3 +27,11 @@ eeerlend\Elements\Testimonial\Elements\ElementTestimonial:
     left: 'Text left'
     center: 'Text center'
     right: 'Text right'
+eeerlend\Elements\Chart\Elements\ElementChart:
+  chartstyles:
+    line: 'Line diagram'
+    bar: 'Bar diagram'
+  borderwidths:
+    3: 'Thin'
+    8: 'Medium'
+    12: 'Thick'
