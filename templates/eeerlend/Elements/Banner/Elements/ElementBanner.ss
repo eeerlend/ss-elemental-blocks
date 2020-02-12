@@ -20,6 +20,8 @@
 
             <% if $PageLink %>
                 <a href="$PageLink.Link" class="banner-element__content-link"><% if $ButtonText %>$ButtonText<% else %>Read more<% end_if %></a>
+            <% else %>
+                <a href="#main-start" class="js-scroll-trigger banner-element__content-link"><% if $ButtonText %>$ButtonText<% else %>Read more<% end_if %></a>
             <% end_if %>
         </div>
     </div>
