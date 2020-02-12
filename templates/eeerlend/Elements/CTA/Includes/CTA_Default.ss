@@ -22,7 +22,7 @@
             <div class="cta-element__content-text">$Content</div>
 
             <% if $PageLink %>
-                <a href="$PageLink.Link" class="cta-element__content-link" href="#"><% if $ButtonText %>$ButtonText<% else %>Read more<% end_if %></a>
+                <a href="$PageLink.Link" class="cta-element__content-link"><% if $ButtonText %>$ButtonText<% else %>Read more<% end_if %></a>
             <% end_if %>
         </div>
     </div>

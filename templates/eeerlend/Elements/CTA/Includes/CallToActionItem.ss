@@ -18,6 +18,6 @@
     <div class="call-to-action-item__content-text">$Content</div>
 
     <% if $PageLink %>
-        <a href="$PageLink.Link" class="call-to-action-item__link" href="#"><% if $ButtonText %>$ButtonText<% else %>Read more<% end_if %></a>
+        <a href="$PageLink.Link" class="call-to-action-item__link"><% if $ButtonText %>$ButtonText<% else %>Read more<% end_if %></a>
     <% end_if %>
 </div>
