@@ -1,4 +1,4 @@
-<div class="cta-element__content">
+<div class="cta-element__content<% if $ExtraClass %> $ExtraClass<% end_if %>">
     <% if $Style != 'imagebackground' %>
         <% if $ImageStyle == 'icon' %>
             <div class="cta-element__content-icon">
