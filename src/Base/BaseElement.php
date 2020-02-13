@@ -12,6 +12,7 @@ class BaseElement extends \DNADesign\Elemental\Models\BaseElement
     private static $db = [
         'Content' => 'HTMLText',
         'Alignment' => 'Varchar',
+        'Spacing' => 'Varchar',
         'ButtonText' => 'Varchar'
     ];
 
@@ -46,6 +47,15 @@ class BaseElement extends \DNADesign\Elemental\Models\BaseElement
                 $fields->insertBefore($alignmentDropdown, 'ExtraClass');
             } else {
                 $fields->removeByName('Alignment');
+            }
+
+            $spacing = $this->config()->get('spacing');
+            if ($spacing && count($spacing) > 0) {
+                $spacingDropdown = DropdownField::create('Spacing', 'Spacing', $spacing)
+                    ->setEmptyString('Select spacing..');
+                $fields->insertBefore($spacingDropdown, 'ExtraClass');
+            } else {
+                $fields->removeByName('Spacing');
             }
 
             $imagestyle = $this->config()->get('imagestyle');
