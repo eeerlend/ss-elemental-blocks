@@ -3,6 +3,7 @@ namespace eeerlend\Elements\Contact\Elements;
 
 use eeerlend\Elements\Base\BaseElement;
 use SilverStripe\Forms\FieldList;
+use SilverStripe\View\Requirements;
 
 class ElementContactForm extends BaseElement
 {
@@ -24,5 +25,17 @@ class ElementContactForm extends BaseElement
 
     public function getType() {
         return 'Contact form';
+    }
+
+    public function forTemplate($holder = true) {
+        Requirements::customScript(<<<JS
+    (function($) {
+        $('.fjerndette-$this->ID').each(function(){
+            this.remove();
+        });
+    })(jQuery);
+JS
+        );
+        return parent::forTemplate($holder);
     }
 }
