@@ -15,6 +15,10 @@ class ElementContactForm extends BaseElement
     private static $description = 'Displays a contact form for a given e-mail address';
     private static $inline_editable = true;
 
+    private static $db = [
+        'Email' => 'Varchar',
+    ];
+
     public function getCMSFields() {
         $this->beforeUpdateCMSFields(function (FieldList $fields) {
 
