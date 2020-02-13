@@ -7,6 +7,7 @@ use eeerlend\Elements\Company\Models\Person;
 use SilverStripe\Forms\GridField\GridFieldAddExistingAutocompleter;
 use Symbiote\GridFieldExtensions\GridFieldAddExistingSearchButton;
 use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
+use SilverStripe\View\Requirements;
 
 class ElementPersons extends BaseElement
 {
@@ -44,5 +45,25 @@ class ElementPersons extends BaseElement
 
     public function getType() {
         return 'Persons';
+    }
+
+    public function forTemplate($holder = true) {
+        Requirements::customCSS(<<<CSS
+    .cloak-name::after {
+        content: "\\40";
+    }
+CSS
+        );
+
+        Requirements::customScript(<<<JS
+    (function($) {
+        $('.cloak-domain').each(function(){
+            var text = $(this).html().replace("dettevirkerkanskje", ".");
+            $(this).text(text);
+        });
+    })(jQuery);
+JS
+        );
+        return parent::forTemplate($holder);
     }
 }

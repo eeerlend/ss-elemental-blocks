@@ -9,7 +9,7 @@
             <ul class="persons-element__person-attributes">
                 <% if $Role %><li>$Role</li><% end_if %>
                 <% if $Company %><li>$Company</li><% end_if %>
-                <% if $Email %><li>$Email</li><% end_if %>
+                <% if $Email %><li>$CloackedEmailAddress.RAW</li><% end_if %>
                 <% if $Phone %><li>$Phone</li><% end_if %>
                 <% if $Content %><li>$Content</li><% end_if %>
             </ul>

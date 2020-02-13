@@ -6,6 +6,7 @@ use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
 use SilverStripe\Forms\TextField;
 use eeerlend\Elements\Base\BaseDataObject;
 use eeerlend\Elements\Company\Elements\ElementPersons;
+use SilverStripe\View\ArrayData;
 
 class Person extends BaseDataObject
 {
@@ -60,5 +61,20 @@ class Person extends BaseDataObject
         , 'Content');
 
         return $fields;
+    }
+
+    public function getCloackedEmailAddress() {
+        $cloaked = $this->getEmailCloaked();
+        return '<span class="cloak-name" id="cloak-id-'. $this->ID .'">'. $cloaked->Name .'</span><span class="cloak-domain cloak-domain-'. $this->ID .'">'. $cloaked->DomainCloaked .'</span>';
+    }
+
+    protected function getEmailCloaked() {
+        $email = explode('@', $this->Email);
+
+        return new ArrayData([
+            'Name' => $email[0],
+            'Domain' => $email[1],
+            'DomainCloaked' => str_replace('.', 'dettevirkerkanskje', $email[1])
+        ]);
     }
 }
