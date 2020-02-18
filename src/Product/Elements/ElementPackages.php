@@ -4,6 +4,7 @@ namespace eeerlend\Elements\Product\Elements;
 use eeerlend\Elements\Base\BaseElement;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\TreeDropdownField;
+use SilverStripe\Forms\TextField;
 
 class ElementPackages extends BaseElement
 {
@@ -28,6 +29,9 @@ class ElementPackages extends BaseElement
             // PageLink
             $fields->insertAfter(TreeDropdownField::create("PageLinkID", "Linked page", "Page")
             , 'Content');
+
+            $fields->insertAfter(TextField::create('ButtonText', 'ButtonText')
+            , 'PageLinkID');
         });
 
         return parent::getCMSFields();

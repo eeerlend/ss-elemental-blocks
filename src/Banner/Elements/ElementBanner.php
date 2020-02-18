@@ -6,6 +6,7 @@ use SilverStripe\Assets\Image;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\TreeDropdownField;
 use SilverStripe\AssetAdmin\Forms\UploadField;
+use SilverStripe\Forms\TextField;
 
 class ElementBanner extends BaseElement
 {
@@ -30,6 +31,10 @@ class ElementBanner extends BaseElement
         $this->beforeUpdateCMSFields(function (FieldList $fields) {
             // PageLink
             $fields->add(TreeDropdownField::create("PageLinkID", "Linked page", "Page"));
+
+            // Button text
+            $fields->insertAfter(TextField::create('ButtonText', 'ButtonText')
+            , 'PageLinkID');
 
             // IconFile
             $fields->insertBefore(UploadField::create('IconFile', 'Icon')
