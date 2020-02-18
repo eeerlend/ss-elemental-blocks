@@ -13,5 +13,29 @@
                 <a href="mailto:$Email">$Email</a>
             </div>
         <% end_if %>
+
+        <% if $TwitterURL %>
+            <div class="contactinfo-element__content-twitter">
+                <a href="$TwitterURL" target="_blank">Follow us on Twitter</a>
+            </div>
+        <% end_if %>
+
+        <% if $FacebookURL %>
+            <div class="contactinfo-element__content-email">
+                <a href="$FacebookURL" target="_blank">Follow us on Facebook</a>
+            </div>
+        <% end_if %>
+
+        <% if $InstagramURL %>
+            <div class="contactinfo-element__content-email">
+                <a href="$InstagramURL" target="_blank">Follow us on Instagram</a>
+            </div>
+        <% end_if %>
+
+        <% if $LinkedinURL %>
+            <div class="contactinfo-element__content-email">
+                <a href="$LinkedinURL" target="_blank">Follow us on LinkedIn</a>
+            </div>
+        <% end_if %>
     </div>
 </div>

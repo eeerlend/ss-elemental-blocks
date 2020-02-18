@@ -20,6 +20,10 @@ class ElementContactInfo extends BaseElement
         'Phone' => 'Varchar',
         'Email' => 'Varchar',
         'Address' => 'Varchar',
+        'LinkedinURL' => 'Varchar',
+        'FacebookURL' => 'Varchar',
+        'InstagramURL' => 'Varchar',
+        'TwitterURL' => 'Varchar'
     ];
 
     public function getCMSFields() {
