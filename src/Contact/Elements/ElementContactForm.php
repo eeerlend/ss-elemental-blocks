@@ -27,6 +27,10 @@ class ElementContactForm extends BaseElement
         return parent::getCMSFields();
     }
 
+    public function getDateTime() {
+        return time();
+    }
+
     public function getType() {
         return 'Contact form';
     }

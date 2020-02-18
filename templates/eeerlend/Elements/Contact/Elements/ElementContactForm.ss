@@ -8,7 +8,9 @@
             </div>
 
             <div class="contactform-element__form">
-                <form id="contactform-element__form-$ID" method="post">
+                <div class="contactform-element__form-message"></div>
+
+                <form id="contactform-element__form-$ID" class="contactform-element__form-form" method="post" data-element="$ID" action="/forms/submit">
                     <div class="contactform-element__form-group">
                         <label for="input-name">Name *</label>
                         <input name="input[name]" type="text" id="input-name" placeholder="Enter name" required="required">
@@ -36,6 +38,9 @@
                         <input name="input[accept-terms]" type="checkbox" id="input-accept-terms">
                         <label class="form-check-label" for="input-accept-terms">I accept</label>
                     </div>
+
+                    <input name="input[element]" type="hidden" value="$ID" />
+                    <input name="input[datetime]" type="hidden" value="$DateTime" />
 
                     <button type="submit">Send</button>
                 </form>
