@@ -129,7 +129,7 @@ class ElementChart extends BaseElement
             scales: {
                 yAxes: [{
                     ticks: {
-                        beginAtZero: true
+                        beginAtZero: false
                     }
                 }]
             },
