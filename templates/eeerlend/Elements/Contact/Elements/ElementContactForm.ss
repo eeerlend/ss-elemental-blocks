@@ -10,7 +10,7 @@
             <div class="contactform-element__form">
                 <div class="contactform-element__form-message"></div>
 
-                <form id="contactform-element__form-$ID" class="needs-validation contactform-element__form-form" method="post" data-element="$ID" action="/forms/submit">
+                <form id="contactform-element__form-$ID" class="contactform-element__form-form" method="post" data-element="$ID" action="/forms/submit">
                     <div class="contactform-element__form-group">
                         <label for="input-name-$ID">Name *</label>
                         <input name="input[name]" type="text" id="input-name-$ID" placeholder="Enter name" required="required">
@@ -37,13 +37,13 @@
                     <% if $NewsletterMessage %>
                     <div class="contactform-element__form-check">
                         <input name="input[signup-newsletter]" type="checkbox" id="input-signup-newsletter-$ID">
-                        <label class="form-check-label" for="input-signup-newsletter-$ID">$NewsletterMessage</label>
+                        <label for="input-signup-newsletter-$ID">$NewsletterMessage</label>
                     </div>
                     <% end_if %>
 
                     <div class="contactform-element__form-check">
                         <input name="input[accept-terms]" type="checkbox" id="input-accept-terms-$ID" required>
-                        <label class="form-check-label" for="input-accept-terms-$ID"><p>I have read and accept the
+                        <label for="input-accept-terms-$ID"><p>I have read and accept the
                         <% if $PageLink %>
                             <a href="$PageLink.Link" class="contactform-element__policy-link" target="_blank">Privacy Policy</a>
                         <% else %>Privacy Policy<% end_if %></p></label>
@@ -55,7 +55,7 @@
                     <input name="input[element]" type="hidden" value="$ID" />
                     <input name="input[datetime]" type="hidden" value="$DateTime" />
 
-                    <button type="submit">Send</button>
+                    <button class="contactform-element__submit" id="contactform-element__submit-$ID" type="submit">Send</button>
                 </form>
             </div>
         </div>
