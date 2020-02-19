@@ -55,7 +55,10 @@
                     <input name="input[element]" type="hidden" value="$ID" />
                     <input name="input[datetime]" type="hidden" value="$DateTime" />
 
-                    <button class="contactform-element__submit" id="contactform-element__submit-$ID" type="submit">Send</button>
+                    <button class="contactform-element__submit" id="contactform-element__submit-$ID" type="submit">
+                        <span class="contactform-element__submit-loader"></span>
+                        <span class="contactform-element__submit-text">Send</span>
+                    </button>
                 </form>
             </div>
         </div>
