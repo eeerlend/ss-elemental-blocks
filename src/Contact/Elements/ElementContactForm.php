@@ -3,6 +3,8 @@ namespace eeerlend\Elements\Contact\Elements;
 
 use eeerlend\Elements\Base\BaseElement;
 use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\TreeDropdownField;
+use SilverStripe\Forms\TextField;
 use SilverStripe\View\Requirements;
 
 class ElementContactForm extends BaseElement
@@ -17,11 +19,17 @@ class ElementContactForm extends BaseElement
 
     private static $db = [
         'Email' => 'Varchar',
+        'NewsletterMessage' => 'Text',
     ];
 
     public function getCMSFields() {
         $this->beforeUpdateCMSFields(function (FieldList $fields) {
+            // PageLink
+            $fields->insertAfter(TreeDropdownField::create("PageLinkID", "Link to privacy policy", "Page")
+            , 'Content');
 
+            $fields->insertAfter(TextField::create('NewsletterMessage', 'NewsletterMessage')
+            , 'PageLinkID');
         });
 
         return parent::getCMSFields();
