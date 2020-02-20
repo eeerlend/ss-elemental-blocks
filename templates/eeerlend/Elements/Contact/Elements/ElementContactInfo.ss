@@ -21,19 +21,19 @@
         <% end_if %>
 
         <% if $FacebookURL %>
-            <div class="contactinfo-element__content-email">
+            <div class="contactinfo-element__content-facebook">
                 <a href="$FacebookURL" target="_blank">Follow us on Facebook</a>
             </div>
         <% end_if %>
 
         <% if $InstagramURL %>
-            <div class="contactinfo-element__content-email">
+            <div class="contactinfo-element__content-instagram">
                 <a href="$InstagramURL" target="_blank">Follow us on Instagram</a>
             </div>
         <% end_if %>
 
         <% if $LinkedinURL %>
-            <div class="contactinfo-element__content-email">
+            <div class="contactinfo-element__content-linkedin">
                 <a href="$LinkedinURL" target="_blank">Follow us on LinkedIn</a>
             </div>
         <% end_if %>
