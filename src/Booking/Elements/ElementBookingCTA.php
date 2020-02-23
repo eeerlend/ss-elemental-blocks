@@ -20,8 +20,8 @@ class ElementBookingCTA extends ElementCTA
 
     public function getCMSFields() {
         $this->beforeUpdateCMSFields(function (FieldList $fields) {
-            $fields->insertAfter(TextField::create('TrekksoftActivityID', 'TrekksoftActivityID')
-            , 'Content');
+            $fields->insertBefore(TextField::create('TrekksoftActivityID', 'TrekksoftActivityID')
+            , 'PageLinkID');
         });
 
         return parent::getCMSFields();
