@@ -33,8 +33,7 @@ class ElementCTA extends BaseElement
     ];
 
     private static $defaults = array(
-        'ShowTitle' => 1,
-        'ImageStyle' => 'rounded'
+        'ShowTitle' => 1
     );
 
     public function getCMSFields() {
