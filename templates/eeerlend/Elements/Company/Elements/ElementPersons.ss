@@ -1,6 +1,6 @@
 <div class="persons-element__container">
     <% if ShowTitle %><h2 class="persons-element__content-title">$Title</h2><% end_if %>
-    <h2 class="persons-element__content">$Content</div>
+    <div class="persons-element__content">$Content</div>
     <div class="persons-element__persons-container">
     <% loop $Persons %>
         <div class="persons-element__person">
