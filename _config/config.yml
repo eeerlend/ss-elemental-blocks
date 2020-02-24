@@ -4,6 +4,7 @@ Name: ss-elemental-blocks
 Silverstripe\SiteConfig\SiteConfig:
   extensions:
     - eeerlend\Elements\Map\Config\ElementMapConfig
+    - eeerlend\Elements\Booking\Config\ElementBookingConfig
 eeerlend\Elements\Map\Elements\ElementMap:
   mapsizes:
     small: 'Small'
