@@ -42,13 +42,6 @@ class ElementBanner extends BaseElement
                 ->setAllowedExtensions('jpg,jpeg,png')
                 ->setDescription('Optional icon to display on top of the Title')
                 ->setIsMultiUpload(false)
-            , 'Title');
-
-            // Video
-            $fields->insertAfter(UploadField::create('File', 'Background Video')
-                ->setFolderName('videos')
-                ->setAllowedExtensions('mp4')
-                ->setIsMultiUpload(false)
             , 'Content');
 
             // Image
@@ -56,7 +49,14 @@ class ElementBanner extends BaseElement
                 ->setFolderName('images')
                 ->setAllowedExtensions('jpg,jpeg,png')
                 ->setIsMultiUpload(false)
-            , 'File');
+            , 'Title');
+
+            // Video
+            $fields->insertAfter(UploadField::create('File', 'Background Video')
+                ->setFolderName('videos')
+                ->setAllowedExtensions('mp4')
+                ->setIsMultiUpload(false)
+            , 'Image');
 
         });
 
