@@ -1,4 +1,5 @@
 <?php
+
 namespace eeerlend\Elements\Banner\Elements;
 
 use eeerlend\Elements\Base\BaseElement;
@@ -27,43 +28,52 @@ class ElementBanner extends BaseElement
         'IconFile'
     ];
 
-    public function getCMSFields() {
+    public function getCMSFields()
+    {
         $this->beforeUpdateCMSFields(function (FieldList $fields) {
             // PageLink
             $fields->add(TreeDropdownField::create("PageLinkID", "Linked page", "Page"));
 
             // Button text
-            $fields->insertAfter(TextField::create('ButtonText', 'ButtonText')
-            , 'PageLinkID');
+            $fields->insertAfter(
+                'PageLinkID',
+                TextField::create('ButtonText', 'ButtonText')
+            );
 
             // IconFile
-            $fields->insertBefore(UploadField::create('IconFile', 'Icon')
-                ->setFolderName('icons')
-                ->setAllowedExtensions('jpg,jpeg,png')
-                ->setDescription('Optional icon to display on top of the Title')
-                ->setIsMultiUpload(false)
-            , 'Content');
+            $fields->insertBefore(
+                'Content',
+                UploadField::create('IconFile', 'Icon')
+                    ->setFolderName('icons')
+                    ->setAllowedExtensions('jpg,jpeg,png')
+                    ->setDescription('Optional icon to display on top of the Title')
+                    ->setIsMultiUpload(false),
+            );
 
             // Image
-            $fields->insertAfter(UploadField::create('Image', 'Background Image')
-                ->setFolderName('images')
-                ->setAllowedExtensions('jpg,jpeg,png')
-                ->setIsMultiUpload(false)
-            , 'Title');
+            $fields->insertAfter(
+                'Title',
+                UploadField::create('Image', 'Background Image')
+                    ->setFolderName('images')
+                    ->setAllowedExtensions('jpg,jpeg,png')
+                    ->setIsMultiUpload(false),
+            );
 
             // Video
-            $fields->insertAfter(UploadField::create('File', 'Background Video')
-                ->setFolderName('videos')
-                ->setAllowedExtensions('mp4')
-                ->setIsMultiUpload(false)
-            , 'Image');
-
+            $fields->insertAfter(
+                'Image',
+                UploadField::create('File', 'Background Video')
+                    ->setFolderName('videos')
+                    ->setAllowedExtensions('mp4')
+                    ->setIsMultiUpload(false),
+            );
         });
 
         return parent::getCMSFields();
     }
 
-    public function getType() {
+    public function getType()
+    {
         return 'Banner';
     }
 }

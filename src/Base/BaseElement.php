@@ -1,4 +1,5 @@
 <?php
+
 namespace eeerlend\Elements\Base;
 
 use SilverStripe\Assets\File;
@@ -27,7 +28,8 @@ class BaseElement extends \DNADesign\Elemental\Models\BaseElement
         'Alignment' => 'center',
     );
 
-    public function getCMSFields() {
+    public function getCMSFields()
+    {
         $this->beforeUpdateCMSFields(function ($fields) {
             $fields->removeByName(array(
                 'File',
@@ -37,14 +39,14 @@ class BaseElement extends \DNADesign\Elemental\Models\BaseElement
             ));
 
             $fields->dataFieldByName('Content')
-                    ->setRows(6);
+                ->setRows(6);
 
             $alignment = $this->config()->get('alignment');
 
             if ($alignment && count($alignment) > 0) {
                 $alignmentDropdown = DropdownField::create('Alignment', 'Alignment', $alignment)
                     ->setEmptyString('Select alignment..');
-                $fields->insertBefore($alignmentDropdown, 'ExtraClass');
+                $fields->insertBefore('ExtraClass', $alignmentDropdown);
             } else {
                 $fields->removeByName('Alignment');
             }
@@ -63,7 +65,7 @@ class BaseElement extends \DNADesign\Elemental\Models\BaseElement
             if ($imagestyle && count($imagestyle) > 0) {
                 $imagestyleDropdown = DropdownField::create('ImageStyle', 'Image style', $imagestyle)
                     ->setEmptyString('Select image style..');
-                $fields->insertBefore($imagestyleDropdown, 'ExtraClass');
+                $fields->insertBefore('ExtraClass', $imagestyleDropdown);
             } else {
                 $fields->removeByName('ImageStyle');
             }

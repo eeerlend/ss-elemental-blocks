@@ -1,4 +1,5 @@
 <?php
+
 namespace eeerlend\Elements\Contact\Elements;
 
 use eeerlend\Elements\Base\BaseElement;
@@ -22,29 +23,39 @@ class ElementContactForm extends BaseElement
         'NewsletterMessage' => 'Text',
     ];
 
-    public function getCMSFields() {
+    public function getCMSFields()
+    {
         $this->beforeUpdateCMSFields(function (FieldList $fields) {
             // PageLink
-            $fields->insertAfter(TreeDropdownField::create("PageLinkID", "Link to privacy policy", "Page")
-            , 'Content');
+            $fields->insertAfter(
+                'Content',
+                TreeDropdownField::create("PageLinkID", "Link to privacy policy", "Page")
+            );
 
-            $fields->insertAfter(TextField::create('NewsletterMessage', 'NewsletterMessage')
-            , 'PageLinkID');
+            $fields->insertAfter(
+                'PageLinkID',
+                TextField::create('NewsletterMessage', 'NewsletterMessage'),
+
+            );
         });
 
         return parent::getCMSFields();
     }
 
-    public function getDateTime() {
+    public function getDateTime()
+    {
         return time();
     }
 
-    public function getType() {
+    public function getType()
+    {
         return 'Contact form';
     }
 
-    public function forTemplate($holder = true) {
-        Requirements::customScript(<<<JS
+    public function forTemplate($holder = true)
+    {
+        Requirements::customScript(
+            <<<JS
     (function($) {
         $('.fjerndette-$this->ID').each(function(){
             this.remove();

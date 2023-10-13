@@ -1,4 +1,5 @@
 <?php
+
 namespace eeerlend\Elements\Testimonial\Elements;
 
 use eeerlend\Elements\Base\BaseElement;
@@ -23,21 +24,24 @@ class ElementTestimonial extends BaseElement
         'Image'
     ];
 
-    public function getCMSFields() {
+    public function getCMSFields()
+    {
         $this->beforeUpdateCMSFields(function (FieldList $fields) {
             // Image
-            $fields->insertBefore(UploadField::create('Image', 'Photo')
-                ->setFolderName('images')
-                ->setAllowedExtensions('jpg,jpeg,png')
-                ->setIsMultiUpload(false)
-            , 'Content');
-
+            $fields->insertBefore(
+                'Content',
+                UploadField::create('Image', 'Photo')
+                    ->setFolderName('images')
+                    ->setAllowedExtensions('jpg,jpeg,png')
+                    ->setIsMultiUpload(false)
+            );
         });
 
         return parent::getCMSFields();
     }
 
-    public function getType() {
+    public function getType()
+    {
         return 'Testimonial';
     }
 }

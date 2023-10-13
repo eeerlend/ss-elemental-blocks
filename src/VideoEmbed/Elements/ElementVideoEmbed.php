@@ -1,4 +1,5 @@
 <?php
+
 namespace eeerlend\Elements\VideoEmbed\Elements;
 
 use eeerlend\Elements\Base\BaseElement;
@@ -25,22 +26,25 @@ class ElementVideoEmbed extends BaseElement
         'Image'
     ];
 
-    public function getCMSFields() {
+    public function getCMSFields()
+    {
         $this->beforeUpdateCMSFields(function (FieldList $fields) {
 
             // Image placeholder
-            $fields->insertBefore(UploadField::create('Image', 'Pre-play image (optional)')
-                ->setFolderName('images')
-                ->setAllowedExtensions('jpg,jpeg,png')
-                ->setIsMultiUpload(false)
-            , 'Content');
+            $fields->insertBefore(
+                'Content',
+                UploadField::create('Image', 'Pre-play image (optional)')
+                    ->setFolderName('images')
+                    ->setAllowedExtensions('jpg,jpeg,png')
+                    ->setIsMultiUpload(false)
+            );
 
             // Video provider
             $providers = $this->config()->get('providers');
             if ($providers && count($providers) > 0) {
                 $providerDropdown = DropdownField::create('Provider', 'Video provider', $providers)
                     ->setEmptyString('Select video provider..');
-                $fields->insertAfter($providerDropdown, 'Content');
+                $fields->insertAfter('Content', $providerDropdown);
             } else {
                 $fields->removeByName('Provider');
             }
@@ -49,7 +53,8 @@ class ElementVideoEmbed extends BaseElement
         return parent::getCMSFields();
     }
 
-    public function getType() {
+    public function getType()
+    {
         return 'Video embed';
     }
 }

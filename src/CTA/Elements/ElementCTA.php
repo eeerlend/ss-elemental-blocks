@@ -1,4 +1,5 @@
 <?php
+
 namespace eeerlend\Elements\CTA\Elements;
 
 use eeerlend\Elements\Base\BaseElement;
@@ -36,32 +37,44 @@ class ElementCTA extends BaseElement
         'ShowTitle' => 1
     );
 
-    public function getCMSFields() {
+    public function getCMSFields()
+    {
         $this->beforeUpdateCMSFields(function (FieldList $fields) {
             $fields->removeByName('CTAGridID');
 
             // Image
-            $fields->insertBefore(UploadField::create('Image', 'Image or icon')
-                ->setFolderName('images')
-                ->setAllowedExtensions('jpg,jpeg,png')
-                ->setIsMultiUpload(false)
-            , 'Content');
+            $fields->insertBefore(
+                'Content',
+                UploadField::create('Image', 'Image or icon')
+                    ->setFolderName('images')
+                    ->setAllowedExtensions('jpg,jpeg,png')
+                    ->setIsMultiUpload(false)
+            );
 
             // PageLink
-            $fields->insertAfter(TreeDropdownField::create("PageLinkID", "Linked page", "Page")
-            , 'Image');
+            $fields->insertAfter(
+                'Image',
+                TreeDropdownField::create("PageLinkID", "Linked page", "Page"),
+            );
 
-            $fields->insertAfter(TextField::create('ButtonText', 'ButtonText')
-            , 'PageLinkID');
+            $fields->insertAfter(
+                'PageLinkID',
+                TextField::create('ButtonText', 'ButtonText'),
 
-            $fields->insertBefore(TextField::create('IconClass', 'IconClass')
-            , 'ExtraClass');
+            );
+
+            $fields->insertBefore(
+                'ExtraClass',
+                TextField::create('IconClass', 'IconClass'),
+
+            );
         });
 
         return parent::getCMSFields();
     }
 
-    public function getType() {
+    public function getType()
+    {
         return 'CTA';
     }
 }

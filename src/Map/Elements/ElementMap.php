@@ -1,4 +1,5 @@
 <?php
+
 namespace eeerlend\Elements\Map\Elements;
 
 use eeerlend\Elements\Base\BaseElement;
@@ -30,22 +31,30 @@ class ElementMap extends BaseElement
         'Image'
     ];
 
-    public function getCMSFields() {
+    public function getCMSFields()
+    {
         $this->beforeUpdateCMSFields(function (FieldList $fields) {
 
             // Image
-            $fields->insertBefore(UploadField::create('Image', 'Alternative image')
-                ->setFolderName('images/maps')
-                ->setDescription('Choose an image to show to visitors without map capabilities on their device')
-                ->setAllowedExtensions('jpg,jpeg,png')
-                ->setIsMultiUpload(false)
-            , 'Content');
+            $fields->insertBefore(
+                'Content',
+                UploadField::create('Image', 'Alternative image')
+                    ->setFolderName('images/maps')
+                    ->setDescription('Choose an image to show to visitors without map capabilities on their device')
+                    ->setAllowedExtensions('jpg,jpeg,png')
+                    ->setIsMultiUpload(false),
+            );
 
             // Position
-            $fields->insertBefore(TextField::create('Latitude', 'Latitude')
-            , 'Content');
-            $fields->insertBefore(TextField::create('Longitude', 'Longitude')
-            , 'Content');
+            $fields->insertBefore(
+                'Content',
+                TextField::create('Latitude', 'Latitude'),
+
+            );
+            $fields->insertBefore(
+                'Content',
+                TextField::create('Longitude', 'Longitude'),
+            );
 
             // Map sizes
             $mapsizes = $this->config()->get('mapsizes');
@@ -53,7 +62,7 @@ class ElementMap extends BaseElement
             if ($mapsizes && count($mapsizes) > 0) {
                 $mapsizeDropdown = DropdownField::create('MapSize', 'Map size', $mapsizes)
                     ->setEmptyString('Select map size..');
-                $fields->insertBefore($mapsizeDropdown, 'ExtraClass');
+                $fields->insertBefore('ExtraClass', $mapsizeDropdown);
             } else {
                 $fields->removeByName('MapSize');
             }
@@ -64,7 +73,7 @@ class ElementMap extends BaseElement
             if ($mapzooms && count($mapzooms) > 0) {
                 $mapzoomDropdown = DropdownField::create('MapZoom', 'Map zoom', $mapzooms)
                     ->setEmptyString('Select map zoom..');
-                $fields->insertBefore($mapzoomDropdown, 'ExtraClass');
+                $fields->insertBefore('ExtraClass', $mapzoomDropdown);
             } else {
                 $fields->removeByName('MapZoom');
             }
@@ -73,17 +82,20 @@ class ElementMap extends BaseElement
         return parent::getCMSFields();
     }
 
-    public function forTemplate($holder = true) {
+    public function forTemplate($holder = true)
+    {
         Requirements::javascript('https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.js');
         Requirements::css('https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.css');
 
         return parent::forTemplate($holder);
     }
 
-    public function getJavascriptBlock() {
+    public function getJavascriptBlock()
+    {
         $config = SiteConfig::current_site_config();
 
-        Requirements::customScript(<<<JS
+        Requirements::customScript(
+            <<<JS
     var testing = [$this->Longitude, $this->Latitude];
 
     mapboxgl.accessToken = '$config->MapboxToken';
@@ -125,11 +137,13 @@ JS
         );
     }
 
-    public function getType() {
+    public function getType()
+    {
         return 'Map';
     }
 
-    public function onBeforeWrite() {
+    public function onBeforeWrite()
+    {
         parent::onBeforeWrite();
 
         if (isset($_POST['Latitude'])) {

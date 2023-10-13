@@ -1,4 +1,5 @@
 <?php
+
 namespace eeerlend\Elements\Booking\Elements;
 
 use eeerlend\Elements\CTA\Elements\ElementCTA;
@@ -20,26 +21,32 @@ class ElementBookingCTA extends ElementCTA
         'TrekksoftActivityID' => 'Varchar',
     ];
 
-    public function getCMSFields() {
+    public function getCMSFields()
+    {
         $this->beforeUpdateCMSFields(function (FieldList $fields) {
-            $fields->insertBefore(TextField::create('TrekksoftActivityID', 'TrekksoftActivityID')
-            , 'PageLinkID');
+            $fields->insertBefore(
+                'PageLinkID',
+                TextField::create('TrekksoftActivityID', 'TrekksoftActivityID')
+            );
         });
 
         return parent::getCMSFields();
     }
 
-    public function getType() {
+    public function getType()
+    {
         return 'Booking';
     }
 
-    public function forTemplate($holder = true) {
+    public function forTemplate($holder = true)
+    {
         $config = SiteConfig::current_site_config();
 
         if ($this->TrekksoftActivityID && $config->TrekksoftAPIUrl) {
-            Requirements::javascript('https://'. $config->TrekksoftAPIUrl .'/en_GB/api/public');
+            Requirements::javascript('https://' . $config->TrekksoftAPIUrl . '/en_GB/api/public');
 
-            Requirements::customScript(<<<JS
+            Requirements::customScript(
+                <<<JS
     (function() {
         var button = new TrekkSoft.Embed.Button();
         button

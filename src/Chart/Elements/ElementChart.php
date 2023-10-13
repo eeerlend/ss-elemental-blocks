@@ -1,4 +1,5 @@
 <?php
+
 namespace eeerlend\Elements\Chart\Elements;
 
 use eeerlend\Elements\Base\BaseElement;
@@ -35,7 +36,8 @@ class ElementChart extends BaseElement
         'Datasets' => Dataset::class,
     ];
 
-    public function getCMSFields() {
+    public function getCMSFields()
+    {
         $this->beforeUpdateCMSFields(function (FieldList $fields) {
             $fields->removeByName('ChartGridID');
 
@@ -45,7 +47,7 @@ class ElementChart extends BaseElement
             if ($chartstyles && count($chartstyles) > 0) {
                 $chartstyleDropdown = DropdownField::create('ChartStyle', 'Chart style', $chartstyles)
                     ->setEmptyString('Select chart style..');
-                $fields->insertBefore($chartstyleDropdown, 'Content');
+                $fields->insertBefore('Content', $chartstyleDropdown);
             } else {
                 $fields->removeByName('ChartStyle');
             }
@@ -56,7 +58,7 @@ class ElementChart extends BaseElement
             if ($borderwidths && count($borderwidths) > 0) {
                 $borderwidthDropdown = DropdownField::create('BorderWidth', 'Line thickness', $borderwidths)
                     ->setEmptyString('Select line width..');
-                $fields->insertBefore($borderwidthDropdown, 'Content');
+                $fields->insertBefore('Content', $borderwidthDropdown);
             } else {
                 $fields->removeByName('BorderWidth');
             }
@@ -65,13 +67,15 @@ class ElementChart extends BaseElement
         return parent::getCMSFields();
     }
 
-    public function forTemplate($holder = true) {
+    public function forTemplate($holder = true)
+    {
         Requirements::javascript('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js');
 
         return parent::forTemplate($holder);
     }
 
-    public function getJavascriptBlock() {
+    public function getJavascriptBlock()
+    {
         $config = SiteConfig::current_site_config();
 
         switch ($this->ChartStyle) {
@@ -86,7 +90,8 @@ class ElementChart extends BaseElement
         }
     }
 
-    public function populateLines() {
+    public function populateLines()
+    {
         /* $jsonArrray = $this->getDataSet();
         $data = implode(', ', $jsonArrray['data']);
         $backgroundColors = "'". implode("', '", $jsonArrray['backgroundColor']) ."'";
@@ -99,7 +104,7 @@ class ElementChart extends BaseElement
         $datasets = $this->Datasets();
         $json = [];
 
-        foreach($datasets as $dataset) {
+        foreach ($datasets as $dataset) {
             $json[] = [
                 'label' => $dataset->Title,
                 'borderColor' => $dataset->BorderColor,
@@ -116,7 +121,8 @@ class ElementChart extends BaseElement
         $datasets = json_encode($json);
         $labels = json_encode(explode(',', $this->Labels));
 
-        Requirements::customScript(<<<JS
+        Requirements::customScript(
+            <<<JS
     var ctx = document.getElementById('chart-element__chart-$this->ID');
     var myChart = new Chart(ctx, {
         type: 'line',
@@ -142,14 +148,16 @@ JS
         );
     }
 
-    public function populateBars() {
+    public function populateBars()
+    {
         $jsonArrray = $this->getDataSet();
         $data = implode(', ', $jsonArrray['data']);
-        $backgroundColors = "'". implode("', '", $jsonArrray['backgroundColor']) ."'";
-        $borderColors = "'". implode("', '", $jsonArrray['borderColor']) ."'";
-        $labels = "'". implode("', '", $jsonArrray['label']) ."'";
+        $backgroundColors = "'" . implode("', '", $jsonArrray['backgroundColor']) . "'";
+        $borderColors = "'" . implode("', '", $jsonArrray['borderColor']) . "'";
+        $labels = "'" . implode("', '", $jsonArrray['label']) . "'";
 
-        Requirements::customScript(<<<JS
+        Requirements::customScript(
+            <<<JS
     var ctx = document.getElementById('chart-element__chart-$this->ID');
     var myChart = new Chart(ctx, {
         type: 'bar',
@@ -180,7 +188,8 @@ JS
         );
     }
 
-    public function getDataSet() {
+    public function getDataSet()
+    {
         $json = [
             'label' => [],
             'data' => [],
@@ -201,11 +210,13 @@ JS
         return $json;
     }
 
-    public function getType() {
+    public function getType()
+    {
         return 'Chart';
     }
 
-    public function onBeforeWrite() {
+    public function onBeforeWrite()
+    {
         parent::onBeforeWrite();
 
         if (!$this->BorderWidth) {

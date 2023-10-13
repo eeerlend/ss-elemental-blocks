@@ -1,4 +1,5 @@
 <?php
+
 namespace eeerlend\Elements\Product\Elements;
 
 use eeerlend\Elements\Base\BaseElement;
@@ -16,28 +17,32 @@ class ElementPackages extends BaseElement
     private static $description = 'Displays packages';
     private static $inline_editable = true;
 
-    private static $db = [
-
-    ];
+    private static $db = [];
 
     private static $owns = [
         'Image'
     ];
 
-    public function getCMSFields() {
+    public function getCMSFields()
+    {
         $this->beforeUpdateCMSFields(function (FieldList $fields) {
             // PageLink
-            $fields->insertAfter(TreeDropdownField::create("PageLinkID", "Linked page", "Page")
-            , 'Content');
+            $fields->insertAfter(
+                'Content',
+                TreeDropdownField::create("PageLinkID", "Linked page", "Page")
+            );
 
-            $fields->insertAfter(TextField::create('ButtonText', 'ButtonText')
-            , 'PageLinkID');
+            $fields->insertAfter(
+                'PageLinkID',
+                TextField::create('ButtonText', 'ButtonText'),
+            );
         });
 
         return parent::getCMSFields();
     }
 
-    public function getType() {
+    public function getType()
+    {
         return 'Product: Packages';
     }
 }
